@@ -1,8 +1,13 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import userRoute from './routes/user.js'
+import authRoute from './routes/auth.js'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
+import messageRoute from './routes/message.js'
+import auth from './middleware/auth.js'
+import cookieParser from 'cookie-parser'
+import userRoute from './routes/user.js'
+
 dotenv.config()
 
 const app = express()
@@ -14,10 +19,13 @@ mongoose.connect(mongoDbUrl)
     .then(res => console.log("MongoDb is conneted"))
     .catch(err => console.log(err))
 
+app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use("/api/auth", userRoute)
+app.use("/api/auth", authRoute)
+app.use("/api/message", auth, messageRoute)
+app.use("/api/user", userRoute)
 
 app.get("/", (req, res) => {
     res.json({ msg: "Server Started" })
