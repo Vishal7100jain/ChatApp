@@ -1,21 +1,27 @@
 import React, { useState } from 'react'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
     let [CheckPassword, setCheckPassword] = useState(true)
 
-    let [showPassword, setShowPassword] = useState(false)
-    let [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    let [showPassword, setShowPassword] = useState(true)
+    let [showConfirmPassword, setShowConfirmPassword] = useState(true)
 
     let [loadingbtn, setLoadingbtn] = useState(false)
 
     let [password, setPassword] = useState('')
     let [confirmPassword, setconfirmPassword] = useState('')
 
+    // const dispatch = useDispatch()
+
     const handleSubmit = (e) => {
         e.preventDefault()
+        // dispatch()
         setLoadingbtn((pre) => pre = true)
+
     }
 
     const checkPasswordSame = (e) => {
@@ -25,6 +31,7 @@ const Login = () => {
             setCheckPassword((pre) => pre = true)
         } else setCheckPassword((pre) => pre = false)
     }
+
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
             <div className='w-full bg-opacity-0 p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg '>
@@ -35,7 +42,6 @@ const Login = () => {
                 <h1 className='text-3xl font-semibold text-center'>
                     Login
                 </h1>
-
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div>
                         <label className="input input-bordered flex items-center gap-2 m-5">
@@ -70,6 +76,8 @@ const Login = () => {
                     ) : (
                         <button className='btn btn-block btn-sm mt-2 btn-primary'>Submit</button>
                     )}
+
+                    <Link to={'/SignUp'} className='link link-hover'>Don't have Account ? Sign Up</Link>
                 </form>
             </div >
         </div >

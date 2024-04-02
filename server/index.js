@@ -7,6 +7,7 @@ import messageRoute from './routes/message.js'
 import auth from './middleware/auth.js'
 import cookieParser from 'cookie-parser'
 import userRoute from './routes/user.js'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ mongoose.connect(mongoDbUrl)
     .then(res => console.log("MongoDb is conneted"))
     .catch(err => console.log(err))
 
+app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

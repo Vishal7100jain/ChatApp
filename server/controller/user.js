@@ -3,18 +3,18 @@ import bcrypt from "bcrypt"
 import generateJWT from "../utilities/generateJWT.js"
 
 export const SignUp = async (req, res) => {
-    let { Name, password, gender, ProfilePic } = req.body
+    let { username, password, gender, ProfilePic } = req.body
     //Hashing the password
     const hashPassword = await bcrypt.hash(password, 12)
-    const boyProfilePic = "https://avatar.iran.liara.run/public/boy"
-    const girlProfilePic = "https://avatar.iran.liara.run/public/girl"
+    const boyProfilePic = ProfilePic ? ProfilePic : "https://avatar.iran.liara.run/public/boy"
+    const girlProfilePic = ProfilePic ? ProfilePic : "https://avatar.iran.liara.run/public/girl"
 
     const newUser = await new User({
-        username: Name, password: hashPassword, gender,
+        username: username, password: hashPassword, gender,
         ProfilePic: gender === "male" ? boyProfilePic : girlProfilePic
     })
+
     await newUser.save()
-        .catch(err => res.status(400).json(err))
 
     await generateJWT(newUser._id, res)
     res.status(200).json(newUser)
@@ -42,3 +42,4 @@ export const Users = async (req, res) => {
     const users = await User.find()
     res.status(200).json(users)
 }
+
