@@ -37,3 +37,13 @@ export const GetMessages = async (req, res) => {
 
     res.status(200).json(conversation.messages)
 }
+
+export const GetConversations = async (req, res) => {
+    const userId = req.userId
+
+    const conversations = await Conversation.find({ members: { $in: [userId] } })
+        .populate('members')
+
+    if (!conversations) return res.status(404).json({ message: "No Conversation Found" })
+    res.status(200).json(conversations)
+}

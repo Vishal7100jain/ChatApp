@@ -8,6 +8,7 @@ const WithErrorHandling = async (dispatch, actionFunction, actionCreator) => {
         if (!data.message) toast.success("Success")
         await dispatch(actionCreator(data))
     } catch (error) {
+        // console.log(error)
         if (error.response.data.message) return toast.error(error.response.data.message)
     }
 }
@@ -20,4 +21,8 @@ export const SignUpActionFun = (data, navigate) => async (dispatch) => {
 export const LoginActionFun = (data, navigate) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.Login(data), UserAction.setUser)
     navigate('/')
+}
+
+export const GetConversations = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.Conversation(id), UserAction.setConversation)
 }

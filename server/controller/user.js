@@ -16,8 +16,8 @@ export const SignUp = async (req, res) => {
 
     await newUser.save()
 
-    await generateJWT(newUser._id, res)
-    res.status(200).json(newUser)
+    const token = await generateJWT(newUser._id, res)
+    res.status(200).json({ userId: newUser._id, token })
 }
 
 export const Login = async (req, res) => {
@@ -27,8 +27,8 @@ export const Login = async (req, res) => {
     const clearPassword = await bcrypt.compare(password, user.password)
 
     if (clearPassword) {
-        await generateJWT(user._id, res)
-        res.status(200).json(user)
+        const token = await generateJWT(user._id, res)
+        res.status(200).json({ userId: user._id, token })
     } else res.status(400).json({ message: "Invalid credentials" })
 }
 

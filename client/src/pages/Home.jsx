@@ -1,9 +1,16 @@
 import React from 'react'
 import Sidebar from '../component/SidBar/Sidebar'
 import MessageContainer from '../component/messages/MessageContainer'
+import { useDispatch } from 'react-redux'
+import { GetConversations } from '../action/user'
 
 const Home = () => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const dispatch = useDispatch()
+    const user = JSON.parse(localStorage.getItem('User'))
+
+    if (user) {
+        dispatch(GetConversations(user._id))
+    }
     return (
         <div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
             <Sidebar />

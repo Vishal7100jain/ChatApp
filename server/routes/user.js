@@ -6,10 +6,10 @@ const router = express.Router()
 
 router.get('/users', auth, async (req, res) => {
     const LoggedInUser = req.userId
-    await User.find().then(res => console.log(res.length))
+    await User.find()
     const user = await User.find({ _id: { $ne: LoggedInUser } }).select("-password")
-    console.log(user.length)
 
+    //friends list now we going to add
     res.status(200).json(user)
 })
 
