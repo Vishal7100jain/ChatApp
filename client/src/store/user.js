@@ -4,15 +4,22 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         user: null,
-        conversation: []
+        conversation: [],
+        getUserToAddFriend: [],
+        isLoading: true,
+        requestStatus: null
     },
     reducers: {
         setUser: (state, action) => {
             localStorage.setItem("User", JSON.stringify({ ...action.payload }));
-            return state.user = JSON.parse(action.payload.token)
+            state.user = action.payload.token
         },
         setConversation: (state, action) => {
-            return state.conversation = action.payload
+            state.conversation = action.payload
+        },
+        searchUsertoAddFriend: (state, action) => {
+            state.isLoading = false
+            state.getUserToAddFriend = action.payload
         }
     },
 });

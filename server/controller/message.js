@@ -41,8 +41,7 @@ export const GetMessages = async (req, res) => {
 export const GetConversations = async (req, res) => {
     const userId = req.userId
 
-    const conversations = await Conversation.find({ members: { $in: [userId] } })
-        .populate('members')
+    const conversations = await User.find({ Friend: { $in: [userId] } })
 
     if (!conversations) return res.status(404).json({ message: "No Conversation Found" })
     res.status(200).json(conversations)

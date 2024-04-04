@@ -15,4 +15,7 @@ API.interceptors.request.use((req) => {
 export const SignUp = async (data) => API.post("/auth/signUp", data)
 export const Login = async (data) => API.post('/auth/login', data)
 
+export const GetUserWithId = (id) => API.get(`/user/UserSearch/${id}`)
 export const Conversation = async (id) => API.get('/user/users/')
+
+export const SendFriendReq = async (id) => API.post(`/friend/Request/${id}`)

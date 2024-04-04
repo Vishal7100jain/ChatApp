@@ -1,16 +1,13 @@
 import express from 'express'
 import User from '../models/user.js'
 import auth from '../middleware/auth.js'
+import WrapAsync from '../utilities/WrapAsync.js'
+import { ConvWithFriend, SearchUserToFriendReq } from '../controller/user.js'
 
 const router = express.Router()
 
-router.get('/users', auth, async (req, res) => {
-    const LoggedInUser = req.userId
-    await User.find()
-    const user = await User.find({ _id: { $ne: LoggedInUser } }).select("-password")
+router.get('/UserSearch/:id', auth, WrapAsync(SearchUserToFriendReq))
+router.get('/users', auth, WrapAsync(ConvWithFriend))
 
-    //friends list now we going to add
-    res.status(200).json(user)
-})
-
+// User.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
 export default router
