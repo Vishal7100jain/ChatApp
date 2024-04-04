@@ -8,6 +8,7 @@ import auth from './middleware/auth.js'
 import cookieParser from 'cookie-parser'
 import userRoute from './routes/user.js'
 import cors from 'cors'
+import FriendRoute from './routes/friend.js'
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ app.use(bodyParser.json())
 app.use("/api/auth", authRoute)
 app.use("/api/message", auth, messageRoute)
 app.use("/api/user", userRoute)
+app.use("/api/friend", FriendRoute)
 
 app.get("/", (req, res) => {
     res.json({ msg: "Server Started" })

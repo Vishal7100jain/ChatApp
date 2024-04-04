@@ -16,7 +16,15 @@ const userSchema = new mongoose.Schema({
     },
     ProfilePic: {
         type: String,
-    }
+    },
+    Friends: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
+    PendingReq: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }]
 })
 
 const User = new mongoose.model("user", userSchema)

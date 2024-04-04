@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function App() {
-  const user = useSelector(state => state.user) || JSON.parse(localStorage.getItem('User'))
+  const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))
 
   return (
     <div className='p-4 h-screen flex items-center justify-center'>

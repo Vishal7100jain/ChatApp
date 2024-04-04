@@ -6,6 +6,11 @@ export function HandleInputErrorSignUp(data) {
         return false
     }
 
+    if (!data.username.includes('_')) {
+        toast.error("Please select a unique username")
+        return false
+    }
+
     if (data.password !== data.confirmPassword) {
         toast.error("Password not match")
         return false

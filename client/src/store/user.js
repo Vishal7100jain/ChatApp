@@ -2,13 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
     name: "user",
-    initialState: null,
+    initialState: {
+        user: null,
+        conversation: [],
+        getUserToAddFriend: [],
+        isLoading: true,
+        requestStatus: null
+    },
     reducers: {
         setUser: (state, action) => {
             localStorage.setItem("User", JSON.stringify({ ...action.payload }));
-            state = action.payload
-            return state
+            state.user = action.payload.token
         },
+        setConversation: (state, action) => {
+            state.conversation = action.payload
+        },
+        searchUsertoAddFriend: (state, action) => {
+            state.isLoading = false
+            state.getUserToAddFriend = action.payload
+        }
     },
 });
 

@@ -21,3 +21,15 @@ export const LoginActionFun = (data, navigate) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.Login(data), UserAction.setUser)
     navigate('/')
 }
+
+export const GetConversations = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.Conversation(id), UserAction.setConversation)
+}
+
+export const GetUserToAddFriend = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.GetUserWithId(id), UserAction.searchUsertoAddFriend)
+}
+
+export const SendFriendReqActionFun = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.SendFriendReq(id))
+}
