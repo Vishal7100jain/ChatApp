@@ -12,9 +12,3 @@ export const SearchUserToFriendReq = async (req, res) => {
 
     res.status(200).json(users)
 }
-
-export const ConvWithFriend = async (req, res) => {
-    const LoggedInUser = req.userId
-    const user = await User.find({ Friends: { $in: [LoggedInUser] } })
-    res.status(200).json(user)
-}

@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux'
 import { SendFriendReqActionFun } from '../../action/user';
 import { TiTick } from "react-icons/ti";
 
-const Conversation = ({ UserToSendFriendReq }) => {
+const Conversation = ({ UserToSendFriendReq, conversationData }) => {
+
     let [ChangeIcon, SetChangeIcon] = useState(false)
     const dispatch = useDispatch()
     const SendFriendReq = (e) => {
@@ -12,7 +13,6 @@ const Conversation = ({ UserToSendFriendReq }) => {
         dispatch(SendFriendReqActionFun(UserToSendFriendReq[0]))
         SetChangeIcon(true)
     }
-
 
     return <>
         <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'>
@@ -24,15 +24,15 @@ const Conversation = ({ UserToSendFriendReq }) => {
             <div className='flex flex-col flex-1 '>
                 <div className='flex gap-3 justify-between'>
                     {UserToSendFriendReq ? <>
-                        <p className='font-blod text-gray-200'>{UserToSendFriendReq[1]}</p>
+                        <p className='font-blod text-gray-200 text-2xl'>{UserToSendFriendReq[1]}</p>
                         <button onClick={(e) => SendFriendReq(e)} className="btn btn-outline  bg-white rounded-full">
                             {ChangeIcon ?
-                                <TiTick style={{ color: 'black', fontSize: "33px" }} /> : <IoPersonAddSharp style={{ color: 'black' }} />
+                                <TiTick style={{ color: 'black' }} /> : <IoPersonAddSharp style={{ color: 'black' }} />
                             }
                         </button>
                     </>
                         : <>
-                            <p className='font-blod text-gray-200'>hari om</p>
+                            <p className='font-blod text-gray-200 text-2xl'>{conversationData.username}</p>
                         </>}
                 </div>
             </div>

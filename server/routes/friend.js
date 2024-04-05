@@ -1,9 +1,11 @@
 import express from 'express';
 import auth from '../middleware/auth.js';
 import WrapAsync from '../utilities/WrapAsync.js';
-import { SendFriendReq } from '../controller/friend.js';
+import { AcceptFriendReq, ConvWithFriend, SendFriendReq } from '../controller/friend.js';
 const router = express.Router();
 
 router.post("/Request/:id", auth, WrapAsync(SendFriendReq))
+router.post("/Accept/:id", auth, WrapAsync(AcceptFriendReq))
+router.get("/Conversations/:id", auth, WrapAsync(ConvWithFriend))
 
 export default router;

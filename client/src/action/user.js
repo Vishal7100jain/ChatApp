@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 const WithErrorHandling = async (dispatch, actionFunction, actionCreator) => {
     try {
         const { data } = await actionFunction()
-        if (!data.message) toast.success("Success")
+        if (data.Successmessage) toast.success(data.Successmessage)
         await dispatch(actionCreator(data))
     } catch (error) {
         if (error.response.data.message) return toast.error(error.response.data.message)
@@ -32,4 +32,8 @@ export const GetUserToAddFriend = (id) => async (dispatch) => {
 
 export const SendFriendReqActionFun = (id) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.SendFriendReq(id))
+}
+
+export const AcceptFriendReqActionFun = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.AcceptFriendReq(id), UserAction.AcceptFriendReq)
 }

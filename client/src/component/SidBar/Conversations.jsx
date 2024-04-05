@@ -7,21 +7,26 @@ const Conversations = () => {
     const { getUserToAddFriend } = useSelector(state => state.user)
 
     return <>
-        {getUserToAddFriend ? getUserToAddFriend.map((U) => {
+        {getUserToAddFriend.length !== 0 ? (getUserToAddFriend.map((U) => {
+            { console.log("yes upar vala chl rha hai") }
             return (
                 <div className='py-2 flex flex-col overflow-auto'>
                     <Conversation key={U._id} UserToSendFriendReq={[U._id, U.username]}></Conversation>
                 </div >
             )
-        }) :
+        })) :
             <div className='py-2 flex flex-col overflow-auto'>
-                {
-                    !conversation.length === 0 ? conversation.map((con) => {
-                        return <Conversation></Conversation>
-                    }) : (<div className='flex items-center justify-center h-96'>
-                        <h1 className='text-2xl font-semibold text-gray-300'>No Conversations</h1>
+                {conversation.length !== 0 ? (
+                    conversation.Friends.map((con, index) => {
+                        return <Conversation key={con._id} conversationData={con} />;
+                    }
+                    )) : (
+                    <div className='flex items-center justify-center h-96'>
+                        <h1 className='text-2xl font-semibold text-gray-300'>
+                            No Conversations
+                        </h1>
                     </div>
-                    )
+                )
                 }
             </div>
         }
