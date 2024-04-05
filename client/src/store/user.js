@@ -22,6 +22,9 @@ const userSlice = createSlice({
             state.getUserToAddFriend = action.payload
         },
         AcceptFriendReq: (state, action) => {
+            let user = JSON.parse(localStorage.getItem('User'))
+            user.user = { ...action.payload.user }
+            localStorage.setItem("User", JSON.stringify(user));
             state.user = action.payload.user
         }
     },

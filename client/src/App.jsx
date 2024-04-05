@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 
 function App() {
   const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))?.user
-
   return (
     <div className='p-4 h-screen flex items-center justify-center'>
       <Routes>

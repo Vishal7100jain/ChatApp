@@ -15,13 +15,13 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     }
 
     return <>
-        <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'>
+        <div className='flex gap-2 items-center hover:bg-white rounded p-2 py-1 cursor-pointer'>
             <div className='avatar online '>
                 <div className='w-12 rounded-full'>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s" alt="user avatar" />
                 </div>
             </div>
-            <div className='flex flex-col flex-1 '>
+            <div className='flex flex-col flex-1  hover:text-black '>
                 <div className='flex gap-3 justify-between'>
                     {UserToSendFriendReq ? <>
                         <p className='font-blod text-gray-200 text-2xl'>{UserToSendFriendReq[1]}</p>
@@ -32,7 +32,7 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
                         </button>
                     </>
                         : <>
-                            <p className='font-blod text-gray-200 text-2xl'>{conversationData.username}</p>
+                            <p className='font-blod text-2xl'>{conversationData.username}</p>
                         </>}
                 </div>
             </div>

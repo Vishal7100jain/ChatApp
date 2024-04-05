@@ -37,3 +37,7 @@ export const SendFriendReqActionFun = (id) => async (dispatch) => {
 export const AcceptFriendReqActionFun = (id) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.AcceptFriendReq(id), UserAction.AcceptFriendReq)
 }
+
+export const RejectFriendReqActionFun = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.RejectFriendReq(id), UserAction.AcceptFriendReq)
+}
