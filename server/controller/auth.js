@@ -17,23 +17,16 @@ export const SignUp = async (req, res) => {
     await newUser.save()
 
     const token = await generateJWT(newUser._id, res)
-    res.status(200).json({ userId: newUser._id, token })
+    res.status(200).json({ user: newUser, token })
 }
 
 export const Login = async (req, res) => {
     let { username, password } = req.body
-    const user = await User.findOne({ username: username })
+    const user = await User.findOne({ username: username }).populate("Friends").populate("PendingReq")
     if (!user) return res.status(400).json({ message: "User not found" })
     const clearPassword = await bcrypt.compare(password, user.password)
-
     if (clearPassword) {
         const token = await generateJWT(user._id, res)
-        res.status(200).json({ userId: user._id, token })
+        res.status(200).json({ user: user, Successmessage: "Logged In Success", token })
     } else res.status(400).json({ message: "Invalid credentials" })
-}
-
-export const Logout = async (req, res) => {
-    if (!req.cookies.token) return res.status(400).json({ message: 'You are not logged in' })
-    res.clearCookie('token')
-    res.status(200).json({ message: 'loggout successfully' })
 }

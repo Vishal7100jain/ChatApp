@@ -12,7 +12,7 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             localStorage.setItem("User", JSON.stringify({ ...action.payload }));
-            state.user = action.payload.token
+            state.user = action.payload.user
         },
         setConversation: (state, action) => {
             state.conversation = action.payload
@@ -20,6 +20,9 @@ const userSlice = createSlice({
         searchUsertoAddFriend: (state, action) => {
             state.isLoading = false
             state.getUserToAddFriend = action.payload
+        },
+        AcceptFriendReq: (state, action) => {
+            state.user = action.payload.user
         }
     },
 });
