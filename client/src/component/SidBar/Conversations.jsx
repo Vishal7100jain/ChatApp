@@ -8,7 +8,6 @@ const Conversations = () => {
 
     return <>
         {getUserToAddFriend.length !== 0 ? (getUserToAddFriend.map((U) => {
-            { console.log("yes upar vala chl rha hai") }
             return (
                 <div className='py-2 flex flex-col overflow-auto'>
                     <Conversation key={U._id} UserToSendFriendReq={[U._id, U.username]}></Conversation>
