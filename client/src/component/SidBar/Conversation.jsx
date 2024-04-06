@@ -3,6 +3,8 @@ import { IoPersonAddSharp } from "react-icons/io5";
 import { useDispatch } from 'react-redux'
 import { SendFriendReqActionFun } from '../../action/user';
 import { TiTick } from "react-icons/ti";
+import { UserAction } from '../../store/user';
+import { useSelector } from 'react-redux'
 
 const Conversation = ({ UserToSendFriendReq, conversationData }) => {
 
@@ -13,12 +15,18 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
         dispatch(SendFriendReqActionFun(UserToSendFriendReq[0]))
         SetChangeIcon(true)
     }
+    const OnlineFrineds = useSelector(state => state.user.OnlineFriends)
+
+    const handleStartChat = (e) => {
+        e.preventDefault()
+        dispatch(UserAction.StartChatWithUser(conversationData))
+    }
 
     return <>
-        <div className='flex gap-2 items-center hover:bg-white rounded p-2 py-1 cursor-pointer'>
-            <div className='avatar online '>
+        <div className='flex gap-2 items-center hover:bg-white rounded p-2 py-1 cursor-pointer' onClick={conversationData ? (e) => handleStartChat(e) : null}>
+            <div className={`avatar ${OnlineFrineds && OnlineFrineds.includes(conversationData?._id) ? "online" : ""}`}>
                 <div className='w-12 rounded-full'>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s" alt="user avatar" />
+                    <img src={conversationData ? conversationData.ProfilePic : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s"} alt="user avatar" />
                 </div>
             </div>
             <div className='flex flex-col flex-1  hover:text-black '>

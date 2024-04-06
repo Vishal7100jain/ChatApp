@@ -2,22 +2,28 @@ import React from 'react'
 import Messages from './messages.jsx'
 import MessageInput from './MessageInput.jsx'
 import { TiMessage } from "react-icons/ti";
+import { useSelector } from 'react-redux'
 
 const MessageContainer = () => {
-    const noChatSelected = true
+    let noChatSelected = true
+    const { SelectedUserToChat } = useSelector(state => state.user)
+    if (SelectedUserToChat) {
+        noChatSelected = false
+    }
+
     return (
         <div className='md:min-w-[450px] flex flex-col'>
             {noChatSelected ? <NoChatSelected /> : <>
-                <div className='bg-state-500 px-4 py-2 mb-2'>
+                <div className='bg-state-500 px-4 py-2 mb-2 flex'>
                     <div className='avatar'>
                         <span className=' w-12 rounded-full'>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s" alt="user avatar" />
+                            <img src={SelectedUserToChat.ProfilePic} alt="user avatar" />
                         </span>
                     </div>
-                    <span className='text-gray-100 font-bold'>vishaljain </span>
+                    <span className='text-gray-100 font-bold text-2xl align-center'>{SelectedUserToChat.username} </span>
                 </div>
                 <div className='divider p-0 m-0'></div>
-                <Messages />
+                <Messages conversationData={SelectedUserToChat} />
                 <MessageInput />
             </>
             }

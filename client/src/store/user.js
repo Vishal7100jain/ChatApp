@@ -7,7 +7,9 @@ const userSlice = createSlice({
         conversation: [],
         getUserToAddFriend: [],
         isLoading: true,
-        requestStatus: null
+        requestStatus: null,
+        SelectedUserToChat: null,
+        OnlineFriends: null
     },
     reducers: {
         setUser: (state, action) => {
@@ -26,6 +28,12 @@ const userSlice = createSlice({
             user.user = { ...action.payload.user }
             localStorage.setItem("User", JSON.stringify(user));
             state.user = action.payload.user
+        },
+        StartChatWithUser: (state, action) => {
+            state.SelectedUserToChat = action.payload
+        },
+        setOnlineFriends: (state, action) => {
+            state.OnlineFriends = [...action.payload]
         }
     },
 });

@@ -1,10 +1,10 @@
 import Message from '../models/message.js'
 import Conversation from '../models/converstion.js'
+import { GetReciverSocketId, io } from '../socket/socket.js'
 
 export const SendMessage = async (req, res) => {
-    const { message } = req.body
+    const { message, id: receiver } = req.body
     const sender = req.userId
-    const receiver = req.params.id
     const newMessage = await new Message({
         message: message
     })
@@ -24,7 +24,10 @@ export const SendMessage = async (req, res) => {
         await newConversation.save()
     }
 
-    res.status(200).json(newMessage)
+    const ReceiverScoketId = GetReciverSocketId(req.body.id)
+
+    io.to(ReceiverScoketId).emit('message', [newMessage])
+    res.status(200).json([newMessage])
 }
 
 export const GetMessages = async (req, res) => {

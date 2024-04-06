@@ -1,4 +1,5 @@
 import * as api from '../api/index.js'
+import { MessageAction } from '../store/message.js'
 import { UserAction } from '../store/user'
 import toast from 'react-hot-toast'
 
@@ -40,4 +41,12 @@ export const AcceptFriendReqActionFun = (id) => async (dispatch) => {
 
 export const RejectFriendReqActionFun = (id) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.RejectFriendReq(id), UserAction.AcceptFriendReq)
+}
+
+export const SendMessageActionFun = (data, id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.SendMessage(data, id), MessageAction.Messages)
+}
+
+export const GetMessages = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.GetMessages(id), MessageAction.Messages)
 }

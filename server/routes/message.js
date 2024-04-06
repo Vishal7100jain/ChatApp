@@ -4,5 +4,6 @@ import { GetMessages, SendMessage, GetConversations } from "../controller/messag
 const router = express.Router()
 
 router.post("/SendMessage/:id", WrapAsync(SendMessage))
-router.get("/GetMessage/:id", WrapAsync(GetMessages))
+router.get("/GetMessages/:id", WrapAsync(GetMessages))
+
 export default router

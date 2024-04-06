@@ -9,10 +9,9 @@ import cookieParser from 'cookie-parser'
 import userRoute from './routes/user.js'
 import cors from 'cors'
 import FriendRoute from './routes/friend.js'
+import { app, server } from './socket/socket.js'
 
 dotenv.config()
-
-const app = express()
 
 const PORT = process.env.PORT || 9000
 const mongoDbUrl = process.env.MONGO_URL
@@ -35,6 +34,6 @@ app.get("/", (req, res) => {
     res.json({ msg: "Server Started" })
 })
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })
