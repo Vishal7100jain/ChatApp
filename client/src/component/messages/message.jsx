@@ -1,15 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const message = ({ Message }) => {
     const time = new Date(Message.createdAt).toLocaleTimeString()
     const user = JSON.parse(localStorage.getItem('User'))?.user
-    console.log(Message)
+    const { SelectedUserToChat } = useSelector(state => state.user)
 
     return (
-        <div div className={`chat ${Message.SenderId === user._id ? "chat-end" : "chat-start"} `}>
+        <div div className={`chat ${Message.senderId === user._id ? "chat-end" : "chat-start"} `}>
             <div className='chat-image avatar'>
                 <div className='w-10 rounded-full'>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s" alt="user avatar" />
+                    <img src={Message.senderId === user._id ? user.ProfilePic : SelectedUserToChat.ProfilePic} alt="user avatar" />
                 </div>
             </div>
             <div className={`chat-bubble text-white bg-blue-500`}> {Message.message}</div>

@@ -4,7 +4,7 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         user: null,
-        conversation: [],
+        Friends: [],
         getUserToAddFriend: [],
         isLoading: true,
         requestStatus: null,
@@ -16,8 +16,8 @@ const userSlice = createSlice({
             localStorage.setItem("User", JSON.stringify({ ...action.payload }));
             state.user = action.payload.user
         },
-        setConversation: (state, action) => {
-            state.conversation = action.payload
+        Friends: (state, action) => {
+            state.Friends = action.payload
         },
         searchUsertoAddFriend: (state, action) => {
             state.isLoading = false
@@ -30,6 +30,7 @@ const userSlice = createSlice({
             state.user = action.payload.user
         },
         StartChatWithUser: (state, action) => {
+            localStorage.setItem("SelectedUserToChat", JSON.stringify({ ...action.payload }));
             state.SelectedUserToChat = action.payload
         },
         setOnlineFriends: (state, action) => {

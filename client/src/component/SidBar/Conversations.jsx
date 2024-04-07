@@ -3,7 +3,7 @@ import Conversation from './Conversation'
 import { useSelector } from 'react-redux'
 
 const Conversations = () => {
-    const { conversation } = useSelector(state => state.user)
+    const { Friends } = useSelector(state => state.user)
     const { getUserToAddFriend } = useSelector(state => state.user)
 
     return <>
@@ -15,8 +15,8 @@ const Conversations = () => {
             )
         })) :
             <div className='py-2 flex flex-col overflow-auto'>
-                {conversation.length !== 0 ? (
-                    conversation.Friends.map((con, index) => {
+                {Friends.length !== 0 ? (
+                    Friends.Friends.map((con, index) => {
                         return <Conversation key={con._id} conversationData={con} />;
                     }
                     )) : (
