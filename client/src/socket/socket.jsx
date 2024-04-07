@@ -20,7 +20,7 @@ export const Socket = () => {
         })
 
         socket.on("message", (msg) => {
-            dispatch(MessageAction.MessageSendedBy(msg))
+            dispatch(MessageAction.LiveMessageStore(msg))
         })
     }, [])
     return null

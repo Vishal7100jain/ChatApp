@@ -10,12 +10,12 @@ const messageSlice = createSlice({
         Messages: (state, action) => {
             state.Messages = action.payload
         },
-        MessageSendedBy: (state, action) => {
+        LiveMessageStore: (state, action) => {
             if (action.payload[0].senderId === JSON.parse(localStorage.getItem('SelectedUserToChat'))._id) {
                 state.Messages = [...state.Messages, ...action.payload]
             }
         },
-        LiveMessageStore: (state, action) => {
+        GetMessageFromDb: (state, action) => {
             state.Messages = [...state.Messages, ...action.payload]
         }
     }
