@@ -30,6 +30,7 @@ const userSlice = createSlice({
             state.user = action.payload.user
         },
         StartChatWithUser: (state, action) => {
+            localStorage.setItem("SelectedUserToChat", JSON.stringify({ ...action.payload }));
             state.SelectedUserToChat = action.payload
         },
         setOnlineFriends: (state, action) => {

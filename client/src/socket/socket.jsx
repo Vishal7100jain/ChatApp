@@ -3,9 +3,11 @@ import io from 'socket.io-client'
 import { useDispatch } from 'react-redux'
 import { UserAction } from '../store/user'
 import { MessageAction } from '../store/message'
+import { useSelector } from 'react-redux'
 
 export const Socket = () => {
     const dispatch = useDispatch()
+    const { StartChatWithUser } = useSelector(state => state.message)
     useEffect(() => {
         const socket = io("http://localhost:9000", {
             query: {
@@ -18,11 +20,7 @@ export const Socket = () => {
         })
 
         socket.on("message", (msg) => {
-            dispatch(MessageAction.LiveMessageStore(msg))
-        })
-
-        socket.on("connect", () => {
-            console.log("Connected")
+            dispatch(MessageAction.MessageSendedBy(msg))
         })
     }, [])
     return null

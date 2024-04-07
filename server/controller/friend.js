@@ -24,6 +24,8 @@ export const AcceptFriendReq = async (req, res) => {
 
     CurrUser.PendingReq.pop(id)
     CurrUser.Friends.push(id)
+    userToAddFriend.Friends.push(req.userId)
+    await userToAddFriend.save()
     await CurrUser.save()
 
     res.status(200).json({ Successmessage: 'Request Accepted', user: CurrUser })
