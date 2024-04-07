@@ -45,6 +45,6 @@ export const RejectFriendReq = async (req, res) => {
 
 export const ConvWithFriend = async (req, res) => {
     const LoggedInUser = req.userId
-    const user = await User.findById(LoggedInUser).populate('Friends')
-    res.status(200).json(user)
+    const Friends = await User.findById(LoggedInUser).populate('Friends')
+    res.status(200).json(Friends)
 }

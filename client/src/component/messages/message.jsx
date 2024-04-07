@@ -3,7 +3,6 @@ import React from 'react'
 const message = ({ Message }) => {
     const time = new Date(Message.createdAt).toLocaleTimeString()
     const user = JSON.parse(localStorage.getItem('User'))?.user
-    console.log(Message)
 
     return (
         <div div className={`chat ${Message.SenderId === user._id ? "chat-end" : "chat-start"} `}>

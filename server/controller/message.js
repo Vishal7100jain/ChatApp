@@ -38,6 +38,7 @@ export const GetMessages = async (req, res) => {
 
     if (!conversation) return res.status(404).json({ message: "No Conversation Found" })
 
+    console.log(conversation.messages)
     res.status(200).json(conversation.messages)
 }
 

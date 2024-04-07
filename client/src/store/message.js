@@ -8,7 +8,7 @@ const messageSlice = createSlice({
     },
     reducers: {
         Messages: (state, action) => {
-            state.Messages = [...state.Messages, ...action.payload]
+            state.Messages = action.payload
         }
     }
 })

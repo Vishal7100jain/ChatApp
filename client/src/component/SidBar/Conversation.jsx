@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoPersonAddSharp } from "react-icons/io5";
 import { useDispatch } from 'react-redux'
-import { SendFriendReqActionFun } from '../../action/user';
+import { GetMessages, SendFriendReqActionFun } from '../../action/user';
 import { TiTick } from "react-icons/ti";
 import { UserAction } from '../../store/user';
 import { useSelector } from 'react-redux'
@@ -20,6 +20,7 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     const handleStartChat = (e) => {
         e.preventDefault()
         dispatch(UserAction.StartChatWithUser(conversationData))
+        dispatch(GetMessages(conversationData._id))
     }
 
     return <>

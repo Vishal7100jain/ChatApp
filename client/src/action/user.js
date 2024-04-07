@@ -23,8 +23,8 @@ export const LoginActionFun = (data, navigate) => async (dispatch) => {
     navigate('/')
 }
 
-export const GetConversations = (id) => async (dispatch) => {
-    await WithErrorHandling(dispatch, async () => await api.Conversation(id), UserAction.setConversation)
+export const GetFriends = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.Conversation(id), UserAction.Friends)
 }
 
 export const GetUserToAddFriend = (id) => async (dispatch) => {
@@ -50,3 +50,4 @@ export const SendMessageActionFun = (data, id) => async (dispatch) => {
 export const GetMessages = (id) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.GetMessages(id), MessageAction.Messages)
 }
+
