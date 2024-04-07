@@ -44,7 +44,7 @@ export const RejectFriendReqActionFun = (id) => async (dispatch) => {
 }
 
 export const SendMessageActionFun = (data, id) => async (dispatch) => {
-    await WithErrorHandling(dispatch, async () => await api.SendMessage(data, id), MessageAction.Messages)
+    await WithErrorHandling(dispatch, async () => await api.SendMessage(data, id), MessageAction.LiveMessageStore)
 }
 
 export const GetMessages = (id) => async (dispatch) => {

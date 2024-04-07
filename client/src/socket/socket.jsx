@@ -18,7 +18,7 @@ export const Socket = () => {
         })
 
         socket.on("message", (msg) => {
-            dispatch(MessageAction.Messages(msg))
+            dispatch(MessageAction.LiveMessageStore(msg))
         })
 
         socket.on("connect", () => {

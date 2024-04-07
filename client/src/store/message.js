@@ -9,6 +9,9 @@ const messageSlice = createSlice({
     reducers: {
         Messages: (state, action) => {
             state.Messages = action.payload
+        },
+        LiveMessageStore: (state, action) => {
+            state.Messages = [...state.Messages, ...action.payload]
         }
     }
 })
