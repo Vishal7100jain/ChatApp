@@ -30,7 +30,8 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
         <div className='flex gap-2 items-center hover:bg-white rounded p-2 py-1 cursor-pointer' onClick={conversationData ? (e) => handleStartChat(e) : null}>
             <div className={`avatar ${OnlineFrineds && OnlineFrineds.includes(conversationData?._id) ? "online" : ""}`}>
                 <div className='w-12 rounded-full'>
-                    <img src={conversationData ? conversationData.ProfilePic : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s"} alt="user avatar" />
+                    {console.log(UserToSendFriendReq)}
+                    <img src={conversationData ? conversationData.ProfilePic : UserToSendFriendReq[2]} alt="user avatar" />
                 </div>
             </div>
             <div className='flex flex-col flex-1  hover:text-black '>

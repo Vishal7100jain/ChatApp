@@ -35,6 +35,7 @@ const siderProfile = () => {
                             <ul tabIndex={0} className="dropdown-content  z-[1] m-0 menu p-2 shadow bg-base-100 rounded-box w-full">
                                 {user.PendingReq.length === 0 ? <li className='p-2'>No Pending Requests</li> :
                                     user.PendingReq.map((FriendReqUser) => {
+                                        { console.log(user.PendingReq) }
                                         return <div key={FriendReqUser._id} className='flex justify-around align-middle '>
                                             <li className='p-2 text-lg font-bold'>{FriendReqUser.username}</li>
                                             <div className="buttons">

@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post("/Request/:id", auth, WrapAsync(SendFriendReq))
 router.post("/Accept/:id", auth, WrapAsync(AcceptFriendReq))
-router.get("/Conversations/:id", auth, WrapAsync(ConvWithFriend))
 router.post("/Reject/:id", auth, WrapAsync(RejectFriendReq))
+router.get("/Conversations/:id", auth, WrapAsync(ConvWithFriend))
 export default router;

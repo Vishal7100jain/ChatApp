@@ -10,7 +10,7 @@ const Conversations = () => {
         {getUserToAddFriend.length !== 0 ? (getUserToAddFriend.map((U) => {
             return (
                 <div className='py-2 flex flex-col overflow-auto'>
-                    <Conversation key={U._id} UserToSendFriendReq={[U._id, U.username]}></Conversation>
+                    <Conversation key={U._id} UserToSendFriendReq={[U._id, U.username, U.ProfilePic]}></Conversation>
                 </div >
             )
         })) :
