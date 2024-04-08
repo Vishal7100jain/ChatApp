@@ -11,6 +11,7 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     let { PhoneView } = useSelector(state => state.user)
 
     let [ChangeIcon, SetChangeIcon] = useState(false)
+
     const dispatch = useDispatch()
     const SendFriendReq = (e) => {
         e.preventDefault()

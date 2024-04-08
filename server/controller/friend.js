@@ -28,15 +28,12 @@ export const AcceptFriendReq = async (req, res) => {
 
     if (!CurrUser.PendingReq.includes(id)) return res.status(400).json({ message: 'No Request Found' })
 
-    console.log(id, CurrUser.PendingReq)
     CurrUser.PendingReq = CurrUser.PendingReq.filter(i => i != id)
 
     CurrUser.Friends.push(id)
     userToAddFriend.Friends.push(req.userId)
     await userToAddFriend.save()
     await CurrUser.save()
-
-    console.log(CurrUser)
 
     const userToSend = await User.findById(req.userId).populate('Friends').select('-password').populate('PendingReq')
 
