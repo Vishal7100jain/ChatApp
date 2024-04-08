@@ -5,9 +5,11 @@ import { GetMessages, SendFriendReqActionFun } from '../../action/user';
 import { TiTick } from "react-icons/ti";
 import { UserAction } from '../../store/user';
 import { useSelector } from 'react-redux'
-import { io } from 'socket.io-client'
 
 const Conversation = ({ UserToSendFriendReq, conversationData }) => {
+
+    let { PhoneView } = useSelector(state => state.user)
+
     let [ChangeIcon, SetChangeIcon] = useState(false)
     const dispatch = useDispatch()
     const SendFriendReq = (e) => {

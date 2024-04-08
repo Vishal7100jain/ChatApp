@@ -1,18 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Messages from './messages.jsx'
 import MessageInput from './MessageInput.jsx'
 import { TiMessage } from "react-icons/ti";
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { UserAction } from '../../store/user.js';
 
 const MessageContainer = () => {
     let noChatSelected = true
+
     const { SelectedUserToChat } = useSelector(state => state.user)
     if (SelectedUserToChat) {
         noChatSelected = false
     }
 
+    let [PhoneView, SetPhoneView] = useState(false)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const handleResize = () => {
+            dispatch(UserAction.SetPhoneView(window.innerWidth < 750));
+        };
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Remove event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [dispatch]);
+
+
     return (
-        <div className='md:flex hidden border-l flex-col'>
+        <div className={`md:flex hidden  w-[650px] border-l flex-col`}>
             {noChatSelected ? <NoChatSelected /> : <>
                 <div className='bg-state-500 px-4 py-2 mb-2 flex'>
                     <div className='avatar'>

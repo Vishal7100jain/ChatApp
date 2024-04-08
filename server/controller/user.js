@@ -12,3 +12,8 @@ export const SearchUserToFriendReq = async (req, res) => {
 
     res.status(200).json(users)
 }
+
+export const GetMyData = async (req, res) => {
+    const user = await User.findById(req.userId).select("-password")
+    res.status(200).json(user)
+}

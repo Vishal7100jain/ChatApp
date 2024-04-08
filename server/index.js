@@ -1,4 +1,3 @@
-import express from 'express'
 import dotenv from 'dotenv'
 import authRoute from './routes/auth.js'
 import mongoose from 'mongoose'

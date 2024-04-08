@@ -13,6 +13,11 @@ const WithErrorHandling = async (dispatch, actionFunction, actionCreator) => {
     }
 }
 
+export const GetUserInfoToStoreInRedux = (id) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.GetMyData(id), UserAction.SetRefreshUser)
+
+}
+
 export const SignUpActionFun = (data, navigate) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.SignUp(data), UserAction.setUser)
     navigate('/')
