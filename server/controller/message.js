@@ -33,10 +33,18 @@ export const SendMessage = async (req, res) => {
 export const GetMessages = async (req, res) => {
     const sender = req.userId
     const receiver = req.params.id
+
     const conversation = await Conversation.findOne({ members: { $all: [sender, receiver] } })
         .populate('messages')
 
-    if (!conversation) return res.status(404).json({ message: "No Conversation Found" })
+    if (!conversation) {
+        const newConversation = await new Conversation({
+            members: [sender, receiver],
+            messages: []
+        })
+        await newConversation.save()
+        return res.status(200).json(newConversation.messages)
+    }
 
     res.status(200).json(conversation.messages)
 }
@@ -49,3 +57,6 @@ export const GetConversations = async (req, res) => {
     if (!conversations) return res.status(404).json({ message: "No Conversation Found" })
     res.status(200).json(conversations)
 }
+
+// Conversation.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
+// Message.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
