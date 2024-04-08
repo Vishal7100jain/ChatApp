@@ -57,3 +57,6 @@ export const GetConversations = async (req, res) => {
     if (!conversations) return res.status(404).json({ message: "No Conversation Found" })
     res.status(200).json(conversations)
 }
+
+// Conversation.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
+// Message.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
