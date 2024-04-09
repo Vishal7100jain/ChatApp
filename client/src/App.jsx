@@ -5,15 +5,38 @@ import SignUp from './pages/SignUp'
 import { Toaster } from 'react-hot-toast'
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import MessageContainer from './component/messages/MessageContainer.jsx'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { UserAction } from './store/user'
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const handleResize = () => {
+      dispatch(UserAction.SetPhoneView(window.innerWidth < 750));
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [dispatch]);
+
   const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))?.user
+  const { PhoneView } = useSelector(state => state.user)
+
   return (
     <div className='p-4 h-screen flex items-center justify-center'>
       <Routes>
         <Route path='/' element={user ? < Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to={'/'} />} />
         <Route path='/SignUp' element={!user ? <SignUp /> : <Navigate to={'/'} />} />
+        <Route path='/Conversation' element={PhoneView ? <MessageContainer /> : <Home />} />
       </Routes>
       <Toaster></Toaster>
     </div>
