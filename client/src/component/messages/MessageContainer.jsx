@@ -1,30 +1,34 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Messages from './messages.jsx'
 import MessageInput from './MessageInput.jsx'
 import { TiMessage } from "react-icons/ti";
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { UserAction } from '../../store/user.js';
 
 const MessageContainer = () => {
     let noChatSelected = true
+
     const { SelectedUserToChat } = useSelector(state => state.user)
     if (SelectedUserToChat) {
         noChatSelected = false
     }
 
     return (
-        <div className='md:flex hidden border-l flex-col'>
+        <div className={`md:flex hidden  w-[650px] overflow-visible border-l border-slate-500 my-6 flex-col`}>
+            {console.log("haa bhai aarha hu ")}
             {noChatSelected ? <NoChatSelected /> : <>
-                <div className='bg-state-500 px-4 py-2 mb-2 flex'>
+                <div className='bg-state-500 px-4 py-2 mb-2 flex' style={{ alignItems: 'center' }}>
                     <div className='avatar'>
                         <span className=' w-12 rounded-full'>
                             <img src={SelectedUserToChat.ProfilePic} alt="user avatar" />
                         </span>
                     </div>
-                    <span className='text-gray-100 font-bold text-2xl align-center'>{SelectedUserToChat.username} </span>
+                    <span className='text-gray-100 font-bold text-3xl px-3 align-center'>{SelectedUserToChat.username} </span>
                 </div>
                 <div className='divider p-0 m-0'></div>
-                <Messages conversationData={SelectedUserToChat} />
-                <MessageInput />
+                {/* <Messages conversationData={SelectedUserToChat} />
+                <MessageInput /> */}
             </>
             }
         </div>

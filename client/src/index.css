@@ -9,3 +9,36 @@ body {
     background-position: center;
     background-attachment: none;
 }
+
+
+.message-shake {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 20px;
+    animation: shake 0.5s ease-in-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

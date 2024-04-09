@@ -12,6 +12,10 @@ API.interceptors.request.use((req) => {
     return req
 })
 
+
+// User Routes
+export const GetMyData = async (id) => API.get(`/user/MyData/${id}`)
+
 // Auth Routes
 export const SignUp = async (data) => API.post("/auth/signUp", data)
 export const Login = async (data) => API.post('/auth/login', data)

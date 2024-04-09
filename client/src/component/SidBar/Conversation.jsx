@@ -5,10 +5,14 @@ import { GetMessages, SendFriendReqActionFun } from '../../action/user';
 import { TiTick } from "react-icons/ti";
 import { UserAction } from '../../store/user';
 import { useSelector } from 'react-redux'
-import { io } from 'socket.io-client'
+import { useNavigate } from 'react-router-dom'
 
 const Conversation = ({ UserToSendFriendReq, conversationData }) => {
+    const navigate = useNavigate()
+    let { PhoneView } = useSelector(state => state.user)
+
     let [ChangeIcon, SetChangeIcon] = useState(false)
+
     const dispatch = useDispatch()
     const SendFriendReq = (e) => {
         e.preventDefault()
@@ -19,6 +23,7 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     const OnlineFrineds = useSelector(state => state.user.OnlineFriends)
 
     const handleStartChat = (e) => {
+        if (PhoneView) return navigate('/Conversation')
         e.preventDefault()
         dispatch(UserAction.StartChatWithUser(conversationData))
         dispatch(GetMessages(conversationData._id))
@@ -28,7 +33,7 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
         <div className='flex gap-2 items-center hover:bg-white rounded p-2 py-1 cursor-pointer' onClick={conversationData ? (e) => handleStartChat(e) : null}>
             <div className={`avatar ${OnlineFrineds && OnlineFrineds.includes(conversationData?._id) ? "online" : ""}`}>
                 <div className='w-12 rounded-full'>
-                    <img src={conversationData ? conversationData.ProfilePic : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-vXdcr9hlDYAQ5-ncVfxtlXW2zUv7z7bQ02cxnz6KA&s"} alt="user avatar" />
+                    <img src={conversationData ? conversationData.ProfilePic : UserToSendFriendReq[2]} alt="user avatar" />
                 </div>
             </div>
             <div className='flex flex-col flex-1  hover:text-black '>

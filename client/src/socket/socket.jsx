@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux'
 import { UserAction } from '../store/user'
 import { MessageAction } from '../store/message'
 import { useSelector } from 'react-redux'
+import NofiSound from '../assets/Sound.mp3'
 
 export const Socket = () => {
+    let ShakeMessage = false
     const dispatch = useDispatch()
-    const { StartChatWithUser } = useSelector(state => state.message)
+
     useEffect(() => {
         const socket = io("http://localhost:9000", {
             query: {
@@ -20,6 +22,9 @@ export const Socket = () => {
         })
 
         socket.on("message", (msg) => {
+            const Sound = new Audio(NofiSound)
+            Sound.play()
+            dispatch(UserAction.ShakeMessage(true))
             dispatch(MessageAction.LiveMessageStore(msg))
         })
     }, [])

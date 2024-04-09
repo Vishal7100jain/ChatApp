@@ -9,7 +9,9 @@ const userSlice = createSlice({
         isLoading: true,
         requestStatus: null,
         SelectedUserToChat: null,
-        OnlineFriends: null
+        OnlineFriends: null,
+        PhoneView: false,
+        ShakeMessage: false
     },
     reducers: {
         setUser: (state, action) => {
@@ -35,6 +37,18 @@ const userSlice = createSlice({
         },
         setOnlineFriends: (state, action) => {
             state.OnlineFriends = [...action.payload]
+        },
+        SetPhoneView: (state, action) => {
+            state.PhoneView = action.payload
+        },
+        SetRefreshUser: (state, action) => {
+            let user = JSON.parse(localStorage.getItem('User'))
+            user.user = { ...action.payload }
+            localStorage.setItem("User", JSON.stringify(user));
+            state.user = action.payload
+        },
+        ShakeMessage: (state, action) => {
+            state.ShakeMessage = action.payload
         }
     },
 });
