@@ -12,31 +12,24 @@ import { UserAction } from './store/user'
 
 function App() {
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    const handleResize = () => {
-      dispatch(UserAction.SetPhoneView(window.innerWidth < 750));
-    };
-
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    // Remove event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [dispatch]);
-
   const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))?.user
-  const { PhoneView } = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
+  const handleResize = () => {
+    dispatch(UserAction.SetPhoneView(window.innerWidth < 750));
+  };
+
+  // Add event listener for window resize
+  window.addEventListener('DOMContentLoaded', handleResize);
+
 
   return (
-    <div className='p-4 h-screen flex items-center justify-center'>
+    <div style={{ overflow: "scroll" }} className='p-4 xs:p-0 h-screen flex items-center justify-center'>
       <Routes>
         <Route path='/' element={user ? < Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to={'/'} />} />
         <Route path='/SignUp' element={!user ? <SignUp /> : <Navigate to={'/'} />} />
-        <Route path='/Conversation' element={PhoneView ? <MessageContainer /> : <Home />} />
+        <Route path='/Conversation' element={<MessageContainer IamPhoneView={true} />} />
       </Routes>
       <Toaster></Toaster>
     </div>
