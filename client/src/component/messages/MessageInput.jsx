@@ -42,13 +42,13 @@ const MessageInput = () => {
     }
 
     return <>
-        <form className='px-4 my-3 mx-2 xs:m-0 xs:px-0 grid' onSubmit={(e) => handleSendMessage(e)}>
+        <form className='px-4 my-3 mx-2 xs:m-0 xs:px-0 relative grid' onSubmit={(e) => handleSendMessage(e)}>
             {!PhoneView ? <>{ShowEmoji &&
-                <div className='relative top-40'>
+                <div className=' absolute bottom-10'>
                     <Picker searchPosition='none' perLine='8' onClickOutside={(e) => (handleCloseEmojiPicker(e))} data={data} onEmojiSelect={(e) => HandleEmojiToInput(e)} />
                 </div>
             } </> : null}
-            <div className='xs:w-full md:mx-2 xs:mx-0 xs:fixed xs:bottom-0' style={!PhoneView ? { width: '58vw' } : null}>
+            <div className='xs:w-full md:mx-2 xs:mx-0 xs:fixed xs:bottom-0' style={!PhoneView ? { width: '52vw' } : null}>
                 {!PhoneView && <div onClick={() => ShowEmojiPicker()} className=" Emoji absolute inset-y-0 start-0 flex items-center px-2 text-2xl" >
                     <MdEmojiEmotions />
                 </div>
