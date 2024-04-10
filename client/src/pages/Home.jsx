@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Sidebar from '../component/SidBar/Sidebar'
 import MessageContainer from '../component/messages/MessageContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetFriends, GetUserInfoToStoreInRedux } from '../action/user'
+import { GetFriends, GetMessages, GetUserInfoToStoreInRedux } from '../action/user'
 import { Socket } from '../socket/socket'
 
 
@@ -22,7 +22,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div style={{ height: "90vh", overflow: "visible" }} className='flex rounded-lg fixed overflow-visible bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
+        <div style={{ height: "90vh", overflow: "visible", width: "80vw" }} className='flex rounded-lg fixed bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
             <Sidebar />
             <MessageContainer />
             <Socket />

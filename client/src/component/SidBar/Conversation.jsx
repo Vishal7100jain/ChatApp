@@ -23,7 +23,11 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     const OnlineFrineds = useSelector(state => state.user.OnlineFriends)
 
     const handleStartChat = (e) => {
-        if (PhoneView) return navigate('/Conversation')
+        console.log(PhoneView)
+        if (PhoneView) {
+            navigate('/Conversation')
+        }
+
         e.preventDefault()
         dispatch(UserAction.StartChatWithUser(conversationData))
         dispatch(GetMessages(conversationData._id))

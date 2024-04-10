@@ -46,6 +46,7 @@ export const GetMessages = async (req, res) => {
         return res.status(200).json(newConversation.messages)
     }
 
+    // console.log(conversation.messages)
     res.status(200).json(conversation.messages)
 }
 
