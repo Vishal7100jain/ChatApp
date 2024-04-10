@@ -28,7 +28,6 @@ const MessageInput = () => {
     }
 
     const ShowEmojiPicker = () => {
-        console.log('clicked')
         SetEmojiPicker((pre) => !pre)
     }
 

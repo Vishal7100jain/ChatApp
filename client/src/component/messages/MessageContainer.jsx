@@ -5,6 +5,7 @@ import { TiMessage } from "react-icons/ti";
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { GetMessages } from '../../action/user.js';
+import { UserAction } from '../../store/user.js';
 
 const MessageContainer = ({ IamPhoneView }) => {
     let noChatSelected = true
@@ -17,13 +18,13 @@ const MessageContainer = ({ IamPhoneView }) => {
         if (IamPhoneView) {
             dispatch(GetMessages(JSON.parse(localStorage.getItem('SelectedUserToChat'))._id))
         }
-    }, [])
+    }, [dispatch])
 
     if (SelectedUserToChat) {
         noChatSelected = false
     }
 
-    if (IamPhoneView) noChatSelected = false
+    // if (IamPhoneView) noChatSelected = false
 
     return <>
         <div className={`md:flex ${IamPhoneView ? "" : 'hidden border-l border-slate-500'} h-full w-full flex-col`}>
