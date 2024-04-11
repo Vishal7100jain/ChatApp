@@ -11,7 +11,7 @@ export const Socket = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const socket = io("http://localhost:9000", {
+        const socket = io("https://chatapp-k0b4.onrender.com/", {
             query: {
                 userId: JSON.parse(localStorage.getItem('User'))?.user._id
             }
