@@ -24,7 +24,7 @@ const siderProfile = () => {
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-side ">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu overflow-x-scroll  overflow-y-hidden p-4 w-1/3 bg-base-200 text-base-content " style={{ height: "90%" }}>
+                <ul className="menu overflow-x-scroll  overflow-y-hidden p-4 xs:w-full md:w-1/3 bg-base-200 text-base-content " style={{ height: "90%" }}>
                     <div className=' font-sans font-bold underline flex items-center text-xl  justify-center'>
                         <h1 className='px-2'>{user.username}</h1>
                     </div>
