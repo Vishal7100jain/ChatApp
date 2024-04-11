@@ -13,7 +13,6 @@ import { UserAction } from './store/user'
 function App() {
 
   const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))?.user
-  console.log(user)
   const dispatch = useDispatch()
 
   const handleResize = () => {
