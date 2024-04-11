@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'http://localhost:9000/api'
+    baseURL: 'https://chatapp-k0b4.onrender.com/api'
 })
 
 API.interceptors.request.use((req) => {
