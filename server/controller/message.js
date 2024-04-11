@@ -50,13 +50,12 @@ export const GetMessages = async (req, res) => {
     res.status(200).json(conversation.messages)
 }
 
-export const GetConversations = async (req, res) => {
-    const userId = req.userId
-
-    const conversations = await User.find({ Friend: { $in: [userId] } })
-
-    if (!conversations) return res.status(404).json({ message: "No Conversation Found" })
-    res.status(200).json(conversations)
+export const EmojiOnMessage = async (req, res) => {
+    const { id } = req.params
+    const emoji = Object.keys(req.body).join("")
+    const msg = await Message.findOneAndUpdate({ _id: id }, { Emoji: emoji }, { new: true })
+    io.emit("emoji", msg)
+    res.status(200).json(msg)
 }
 
 // Conversation.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))

@@ -56,3 +56,6 @@ export const GetMessages = (id) => async (dispatch) => {
     await WithErrorHandling(dispatch, async () => await api.GetMessages(id), MessageAction.Messages)
 }
 
+export const SetEmojiOnMessageActionFun = (id, emoji) => async (dispatch) => {
+    await WithErrorHandling(dispatch, async () => await api.SetEmojiOnMessage(id, emoji))
+}

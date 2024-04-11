@@ -12,7 +12,6 @@ export const SearchUserToFriendReq = async (req, res) => {
 
     if (!users) return res.status(400).json({ message: 'User not found' })
 
-    console.log(users)
     res.status(200).json(users)
 }
 

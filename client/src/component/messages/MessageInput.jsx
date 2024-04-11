@@ -53,7 +53,7 @@ const MessageInput = () => {
                     <MdEmojiEmotions />
                 </div>
                 }
-                <input type="text" ref={message} className='border w-full text-sm p-2 md:px-10 xs:px-2 focus:outline-none focus rounded-lg block bg-gray-700 border-gray-600 text-white' placeholder='Send a Message' />
+                <input type="text" ref={message} className='border w-full text-sm p-2 md:px-10 xs:px-2 xs:pe-10 focus:outline-none focus rounded-lg block bg-gray-700 border-gray-600 text-white' placeholder='Send a Message' />
                 <button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>
                     <BsSend />
                 </button>

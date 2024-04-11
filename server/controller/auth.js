@@ -5,8 +5,6 @@ import generateJWT from "../utilities/generateJWT.js"
 export const SignUp = async (req, res) => {
     let { username, password, gender, ProfilePic } = req.body
 
-    console.log(gender)
-
     // Checking Unique Username
     const user = await User.findOne({ username: username })
     if (user) return res.status(400).json({ message: "Choose a Unique Username" })
@@ -18,8 +16,9 @@ export const SignUp = async (req, res) => {
 
     const hashPassword = await bcrypt.hash(password, 12)
 
-    const boyProfilePic = ProfilePic ? ProfilePic : "https://avatar.iran.liara.run/public/boy"
-    const girlProfilePic = ProfilePic ? ProfilePic : "https://avatar.iran.liara.run/public/girl"
+
+    const boyProfilePic = ProfilePic ? ProfilePic : `https://avatar.iran.liara.run/public/boy?username=${username}`
+    const girlProfilePic = ProfilePic ? ProfilePic : `https://avatar.iran.liara.run/public/girl?username=${username}`
 
     const newUser = await new User({
         username: username, password: hashPassword, gender,

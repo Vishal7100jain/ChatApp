@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { SetEmojiOnMessageActionFun } from '../../action/user'
 
 const message = ({ Message }) => {
+    // console.log(Message)
     const time = new Date(Message.createdAt)
     const hrs = time.getHours()
     const mint = time.getMinutes()
@@ -12,7 +15,7 @@ const message = ({ Message }) => {
     let { ShakeMessage } = useSelector(state => state.user)
     const View = useRef()
     let [ShowReaction, SetReaction] = useState(false)
-    let [ShowSelectedEmoji, SetEmojiOnMessage] = useState()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setTimeout(() => {
@@ -23,10 +26,7 @@ const message = ({ Message }) => {
     const ChatPosition = Message.senderId === user._id
 
     const handleShowReacton = (e) => {
-        SetEmojiOnMessage((pre) => {
-            if (pre != e.target.innerHTML) return pre = e.target.innerHTML
-            else return pre = ""
-        })
+        dispatch(SetEmojiOnMessageActionFun(Message._id, e.target.innerHTML))
         SetReaction(false)
     }
 
@@ -55,7 +55,7 @@ const message = ({ Message }) => {
                 <div className='w-full' style={ChatPosition ? { display: "grid", justifyContent: "end", position: 'relative' } : { display: 'grid', position: "relative", justifyContent: "start" }}>
                     <div onClick={() => SetReaction((pre => !pre))} className={`mb-3 max-w-none chat-bubble flex w-full text-white bg-blue-500  ${!ChatPosition && ShakeMessage ? "message-shake" : ""} `} ref={View}>
                         {Message.message}
-                        <span className={`rounded-full text-2xl ${!ChatPosition ? 'right-0' : 'left-0'}`} style={{ position: 'absolute', top: '55%' }}>{ShowSelectedEmoji}</span>
+                        <span className={`rounded-full text-2xl ${!ChatPosition ? 'right-0' : 'left-0'}`} style={{ position: 'absolute', top: '55%' }}>{Message.Emoji}</span>
                     </div>
                     <div className={` absolute ${ChatPosition ? 'right-0' : ''} chat-fotter opacity-50 text-xs text-start flex gap-1 items-center`} style={{ fontSize: "0.68rem", top: "89%", width: "3rem" }}>{hrs}:{mint} {hrs >= 12 ? "PM" : "AM"}</div>
                 </div>

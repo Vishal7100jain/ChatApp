@@ -14,6 +14,9 @@ const messageSchema = new mongoose.Schema({
     message: {
         type: String,
         required: true,
+    },
+    Emoji: {
+        type: String
     }
 }, { timestamps: true })
 
