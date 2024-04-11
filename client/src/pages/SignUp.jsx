@@ -20,8 +20,8 @@ const SignUp = () => {
     const navigation = useNavigate()
     let [Data, SetData] = useState({ username: '', password: '', gender: "", confirmPassword: '' })
 
-    let [showPassword, setShowPassword] = useState(false)
-    let [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    let [showPassword, setShowPassword] = useState(true)
+    let [showConfirmPassword, setShowConfirmPassword] = useState(true)
 
     let [loadingbtn, setLoadingbtn] = useState(false)
     const dispatch = useDispatch()
