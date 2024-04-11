@@ -26,6 +26,11 @@ const siderProfile = () => {
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu overflow-x-scroll  overflow-y-hidden p-4 xs:w-full md:w-1/3 bg-base-200 text-base-content " style={{ height: "90%" }}>
                     <div className=' font-sans font-bold underline flex items-center text-xl  justify-center'>
+                      <div className='avatar'>
+                            <span className=' w-12 rounded-full'>
+                                <img src={user.ProfilePic} alt="user avatar" />
+                            </span>
+                        </div>
                         <h1 className='px-2'>{user.username}</h1>
                     </div>
                     <li>
