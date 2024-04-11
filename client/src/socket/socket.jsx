@@ -27,6 +27,11 @@ export const Socket = () => {
             dispatch(UserAction.ShakeMessage(true))
             dispatch(MessageAction.LiveMessageStore(msg))
         })
+
+        socket.on("emoji", (MsgWithEmoji) => {
+            // console.log(MsgWithEmoji, "haa bhai mai live data")
+            dispatch(MessageAction.SetEmojiOnMessageLive(MsgWithEmoji))
+        })
     }, [])
     return null
 }

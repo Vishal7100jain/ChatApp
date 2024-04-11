@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const messageSlice = createSlice({
     name: "message",
     initialState: {
-        Messages: []
+        Messages: [],
+        MessageEmoji: {}
     },
     reducers: {
         Messages: (state, action) => {
@@ -16,6 +17,16 @@ const messageSlice = createSlice({
         },
         GetMessageFromDb: (state, action) => {
             state.Messages = [...state.Messages, ...action.payload]
+        },
+        SetEmojiOnMessageLive: (state, action) => {
+            state.Messages = state.Messages.map((msg) => {
+                console.log(msg, action.payload)
+                // console.log(msg._id, action.payload._id)
+                if (msg._id === action.payload._id) {
+                    return msg = action.payload
+                }
+                return msg
+            })
         }
     }
 })

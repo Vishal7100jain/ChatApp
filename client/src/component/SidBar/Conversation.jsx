@@ -34,16 +34,16 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     }
 
     return <>
-        <div className='flex gap-2 items-center hover:bg-white rounded p-2 py-1 cursor-pointer' onClick={conversationData ? (e) => handleStartChat(e) : null}>
+        <div className='flex gap-2 items-center hover:bg-white hover:text-black rounded p-2 py-1 cursor-pointer' onClick={conversationData ? (e) => handleStartChat(e) : null}>
             <div className={`avatar ${OnlineFrineds && OnlineFrineds.includes(conversationData?._id) ? "online" : ""}`}>
                 <div className='w-12 rounded-full'>
                     <img src={conversationData ? conversationData.ProfilePic : UserToSendFriendReq[2]} alt="user avatar" />
                 </div>
             </div>
-            <div className='flex flex-col flex-1  hover:text-black '>
+            <div className='flex flex-col flex-1 hover:text-black'>
                 <div className='flex gap-3 justify-between'>
                     {UserToSendFriendReq ? <>
-                        <p className='font-blod text-gray-200 text-2xl'>{UserToSendFriendReq[1]}</p>
+                        <p className=' font-blod hover:text-black text-3xl'>{UserToSendFriendReq[1]}</p>
                         <button onClick={(e) => SendFriendReq(e)} className="btn btn-outline  bg-white rounded-full">
                             {ChangeIcon ?
                                 <TiTick style={{ color: 'black' }} /> : <IoPersonAddSharp style={{ color: 'black' }} />

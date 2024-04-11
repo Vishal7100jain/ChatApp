@@ -9,5 +9,5 @@ const router = express.Router()
 router.get('/UserSearch/:id', auth, WrapAsync(SearchUserToFriendReq))
 router.get("/MyData/:id", auth, WrapAsync(GetMyData))
 
-// User.deleteMany({}).then(res => consoleq.log(res)).catch(err => console.log(err))
+// User.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
 export default router
