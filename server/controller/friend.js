@@ -43,7 +43,7 @@ export const AcceptFriendReq = async (req, res) => {
 export const RejectFriendReq = async (req, res) => {
     const { id } = req.params
     const userToReject = await User.findById(id)
-    const CurrUser = await User.findById(req.userId)
+    const CurrUser = await User.findById(req.userId).select("-password")
 
     if (!userToReject) return res.status(400).json({ message: 'User not found' })
     if (!CurrUser.PendingReq.includes(id)) return res.status(400).json({ message: 'No Request Found' })
@@ -56,6 +56,6 @@ export const RejectFriendReq = async (req, res) => {
 
 export const ConvWithFriend = async (req, res) => {
     const LoggedInUser = req.userId
-    const Friends = await User.findById(LoggedInUser).populate('Friends')
+    const Friends = await User.findById(LoggedInUser).populate('Friends').select("-password")
     res.status(200).json(Friends)
 }

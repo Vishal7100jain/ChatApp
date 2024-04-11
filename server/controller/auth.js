@@ -33,7 +33,7 @@ export const SignUp = async (req, res) => {
 
 export const Login = async (req, res) => {
     let { username, password } = req.body
-    const user = await User.findOne({ username: username }).populate("Friends").populate("PendingReq")
+    const user = await User.findOne({ username: username }).populate("Friends").populate("PendingReq").select("-password")
     if (!user) return res.status(400).json({ message: "User not found" })
     const clearPassword = await bcrypt.compare(password, user.password)
     if (clearPassword) {

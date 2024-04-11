@@ -46,7 +46,6 @@ export const GetMessages = async (req, res) => {
         return res.status(200).json(newConversation.messages)
     }
 
-    // console.log(conversation.messages)
     res.status(200).json(conversation.messages)
 }
 
@@ -57,6 +56,3 @@ export const EmojiOnMessage = async (req, res) => {
     io.emit("emoji", msg)
     res.status(200).json(msg)
 }
-
-// Conversation.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
-// Message.deleteMany({}).then(res => console.log(res)).catch(err => console.log(err))
