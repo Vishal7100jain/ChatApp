@@ -22,7 +22,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div  className='flex rounded-lg fixed bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
+        <div id="Main"className='flex rounded-lg fixed bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
             <Sidebar />
             <MessageContainer />
             <Socket />
