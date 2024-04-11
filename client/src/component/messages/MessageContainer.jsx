@@ -40,7 +40,7 @@ const MessageContainer = ({ IamPhoneView }) => {
                     <div className='px-16'>
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
-                                <span className='text-gray-100 font-bold text-3xl px-5 align-center'>{SelectedUserToChat.username} </span>
+                                <span className='text-gray-100 font-bold text-3xl align-center'>{SelectedUserToChat.username} </span>
                             </div>
                         </div>
                     </div>
