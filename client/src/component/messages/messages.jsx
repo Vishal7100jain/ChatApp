@@ -6,7 +6,7 @@ const messages = () => {
     const { Messages } = useSelector(state => state.message)
 
     return (
-        <div className='px-4 w-full flex-1 overflow-auto mb-10 xs:mt-10'>
+        <div className='px-4 w-full flex-1 overflow-auto mb-10 xs:mt-15'>
             {Messages && Messages.map((msg) => {
                 return < Message key={msg._id} Message={msg} />
             })}
