@@ -29,7 +29,7 @@ const MessageContainer = ({ IamPhoneView }) => {
     return <>
         <div className={`md:flex ${IamPhoneView ? "" : 'hidden border-l border-slate-500'} h-full w-full flex-col`}>
             {noChatSelected ? <NoChatSelected /> : <>
-                <div className="navbar bg-base-100 xs:fixed md:relative xs:z-[99]">
+                <div className="navbar bg-base-100 xs:fixed xs:top-0 md:relative xs:z-[99]">
                     <div>
                         <div className='avatar'>
                             <span className=' w-12 rounded-full'>
