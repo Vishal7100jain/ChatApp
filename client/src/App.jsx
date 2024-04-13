@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <div style={{ overflow: "scroll" }} className='md:p-4 xs:p-0 h-screen md:flex items-center justify-center'>
+    <div style={{ overflow: "scroll" }} className='md:p-4 xs:p-0 h-screen flex items-center justify-center'>
       <Routes>
         <Route path='/' element={user ? < Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to={'/'} />} />
