@@ -18,11 +18,8 @@ function App() {
   const handleResize = () => {
     dispatch(UserAction.SetPhoneView(window.innerWidth < 750));
   };
-
-  // Add event listener for window resize
-  window.addEventListener('DOMContentLoaded', handleResize);
-
-
+  handleResize()
+  
   return (
     <div style={{ overflow: "scroll" }} className='md:p-4 xs:p-0 h-screen flex items-center justify-center'>
       <Routes>
