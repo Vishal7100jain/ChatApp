@@ -21,8 +21,6 @@ const userMap = {}
 
 const userMapForOnlineUser = {}
 io.on("connection", (socket) => {
-    console.log("User Connected")
-
     const userId = socket.handshake.query.userId
 
     if (userId) {
@@ -33,7 +31,6 @@ io.on("connection", (socket) => {
     socket.emit("OnlineUser", Object.keys(userMapForOnlineUser))
 
     socket.on("disconnect", () => {
-        console.log("User Disconnected")
         delete userMapForOnlineUser[userId]
         socket.emit("OnlineUser", Object.keys(userMapForOnlineUser))
     })
