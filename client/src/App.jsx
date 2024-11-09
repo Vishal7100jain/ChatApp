@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate, useNavigation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -7,8 +7,8 @@ import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import MessageContainer from './component/messages/MessageContainer.jsx'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
 import { UserAction } from './store/user'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
 
@@ -19,15 +19,17 @@ function App() {
     dispatch(UserAction.SetPhoneView(window.innerWidth < 750));
   };
   handleResize()
-  
+
   return (
     <div style={{ overflow: "scroll" }} className='md:p-4 xs:p-0 h-screen flex items-center justify-center'>
-      <Routes>
-        <Route path='/' element={user ? < Home /> : <Navigate to='/login' />} />
-        <Route path='/login' element={!user ? <Login /> : <Navigate to={'/'} />} />
-        <Route path='/SignUp' element={!user ? <SignUp /> : <Navigate to={'/'} />} />
-        <Route path='/Conversation' element={<MessageContainer IamPhoneView={true} />} />
-      </Routes>
+      <GoogleOAuthProvider clientId="919677217472-ambs64g0qhbj603f7nbb7g3b0be829dr.apps.googleusercontent.com">
+        <Routes>
+          <Route path='/' element={user ? < Home /> : <Navigate to='/login' />} />
+          <Route path='/login' element={!user ? <Login /> : <Navigate to={'/'} />} />
+          <Route path='/SignUp' element={!user ? <SignUp /> : <Navigate to={'/'} />} />
+          <Route path='/Conversation' element={<MessageContainer IamPhoneView={true} />} />
+        </Routes>
+      </GoogleOAuthProvider>;
       <Toaster></Toaster>
     </div>
   )

@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
@@ -6,6 +5,10 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { LoginActionFun } from '../action/user';
 import { HandleInputErrorLogin } from '../hooks/userFormValidation.js';
+import { useState } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
+
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -15,8 +18,6 @@ const Login = () => {
 
 
     let [showPassword, setShowPassword] = useState(true)
-    let [showConfirmPassword, setShowConfirmPassword] = useState(true)
-
     let [loadingbtn, setLoadingbtn] = useState(false)
 
 
@@ -24,7 +25,16 @@ const Login = () => {
         e.preventDefault()
         if (HandleInputErrorLogin(Data)) {
             dispatch(LoginActionFun(Data, navigate))
-            setLoadingbtn((pre) => pre = true)
+            setLoadingbtn((pre) => !pre)
+        }
+    }
+
+    const handleGoogleLogin = async (data) => {
+        try {
+            const result = axios.get(`https://people.googleapis.com/v1/people/${data.credential}/credentials_email`)
+            console.log('result', result)
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -61,9 +71,11 @@ const Login = () => {
                     ) : (
                         <button type='submit' className='btn btn-block btn-sm mt-2 btn-primary'>Submit</button>
                     )}
-
-                    <Link to={'/SignUp'} className='link link-hover'>Don't have Account ? Sign Up</Link>
+                    <Link to={'/SignUp'} className='link link-hover'>Don&apos;t have Account ? Sign Up</Link>
                 </form>
+                <div className='justify-center flex mt-4'>
+                    <GoogleLogin onSuccess={(data) => handleGoogleLogin(data)} onError={(er) => console.log(er)} theme='filled_blue' />
+                </div>
             </div >
         </div >
     )
