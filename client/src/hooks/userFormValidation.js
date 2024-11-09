@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 
 export function HandleInputErrorSignUp(data) {
-    if (!data.username || !data.password || !data.gender || !data.confirmPassword) {
+    if (!data.username || !data.email || !data.gender || !data.confirmemail) {
         toast.error("Please fill all the fields")
         return false
     }
@@ -11,13 +11,13 @@ export function HandleInputErrorSignUp(data) {
         return false
     }
 
-    if (data.password !== data.confirmPassword) {
-        toast.error("Password not match")
+    if (data.email !== data.confirmemail) {
+        toast.error("email not match")
         return false
     }
 
-    if (data.password.length < 8) {
-        toast.error("Password must be at least 8 characters")
+    if (data.email.length < 8) {
+        toast.error("email must be at least 8 characters")
         return false
     }
 
@@ -25,13 +25,13 @@ export function HandleInputErrorSignUp(data) {
 }
 
 export function HandleInputErrorLogin(data) {
-    if (!data.username || !data.password) {
+    if (!data.username || !data.email) {
         toast.error("Please fill all the fields")
         return false
     }
 
-    if (data.password.length < 8) {
-        toast.error("Password must be at least 8 characters")
+    if (data.email.length < 8) {
+        toast.error("email must be at least 8 characters")
         return false
     }
 

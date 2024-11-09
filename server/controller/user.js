@@ -8,7 +8,7 @@ export const SearchUserToFriendReq = async (req, res) => {
             { username: { $regex: username, $options: 'i' } },
             { _id: { $ne: req.userId } }
         ]
-    }).select("-password")
+    }).select("-email")
 
     if (!users) return res.status(400).json({ message: 'User not found' })
 
@@ -16,6 +16,6 @@ export const SearchUserToFriendReq = async (req, res) => {
 }
 
 export const GetMyData = async (req, res) => {
-    const user = await User.findById(req.userId).select("-password").populate('Friends').populate('PendingReq')
+    const user = await User.findById(req.userId).select("-email").populate('Friends').populate('PendingReq')
     res.status(200).json(user)
 }
