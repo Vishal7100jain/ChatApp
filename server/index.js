@@ -21,8 +21,8 @@ const __dirname = path.resolve()
 
 // Allow requests from your frontend origin
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend's origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add methods as needed// If you're using cookies or session-based authentication
+    origin: 'https://chatapp-k0b4.onrender.com/',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 
