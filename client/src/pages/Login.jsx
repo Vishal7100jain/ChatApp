@@ -61,7 +61,7 @@ const Login = () => {
                     <Link to={'/SignUp'} className='link link-hover'>Don&apos;t have Account ? Sign Up</Link>
                 </form>
                 <div className='justify-center flex mt-4'>
-                    <GoogleButton onClick={() => handleGoogleLogin()} />
+                    <GoogleButton disabled={loadingbtn} onClick={() => handleGoogleLogin()} />
                 </div>
             </div >
         </div >
