@@ -20,8 +20,6 @@ const messageSlice = createSlice({
         },
         SetEmojiOnMessageLive: (state, action) => {
             state.Messages = state.Messages.map((msg) => {
-                console.log(msg, action.payload)
-                // console.log(msg._id, action.payload._id)
                 if (msg._id === action.payload._id) {
                     return msg = action.payload
                 }

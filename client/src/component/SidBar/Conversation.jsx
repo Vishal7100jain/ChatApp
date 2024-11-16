@@ -23,7 +23,6 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
     const OnlineFrineds = useSelector(state => state.user.OnlineFriends)
 
     const handleStartChat = (e) => {
-        console.log(PhoneView)
         if (PhoneView) {
             navigate('/Conversation')
         }

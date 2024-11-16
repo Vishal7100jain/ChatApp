@@ -19,8 +19,12 @@ export const GetUserInfoToStoreInRedux = (id) => async (dispatch) => {
 }
 
 export const SignUpActionFun = (data, navigate) => async (dispatch) => {
-    await WithErrorHandling(dispatch, async () => await api.SignUp(data), UserAction.setUser)
-    navigate('/')
+    try {
+        await WithErrorHandling(dispatch, async () => await api.SignUp(data), UserAction.setUser)
+        navigate('/signup')
+    } catch (error) {
+        navigate('/signup')
+    }
 }
 
 export const LoginActionFun = (data, navigate) => async (dispatch) => {

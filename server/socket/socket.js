@@ -5,13 +5,20 @@ import { Server } from 'socket.io'
 const app = express();
 const server = http.createServer(app);
 
+// const io = new Server(server, {
+//     cors: {
+//         // origin: ["https://chatapp-k0b4.onrender.com/", '/'],
+//         origin: "*",
+//         methods: ["GET", "POST", "PATCH", "DELETE", "PUT"]
+//     }
+// });
+
 const io = new Server(server, {
     cors: {
-        origin: "https://chatapp-k0b4.onrender.com/",
-        methods: ["GET", "POST", "PATCH"]
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST"],
     }
 });
-
 
 export const GetReciverSocketId = (userId) => {
     return userMap[userId]

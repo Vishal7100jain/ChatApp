@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import { SetEmojiOnMessageActionFun } from '../../action/user'
 
 const message = ({ Message }) => {
-    // console.log(Message)
     const time = new Date(Message.createdAt)
     const hrs = time.getHours()
     const mint = time.getMinutes()

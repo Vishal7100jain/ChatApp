@@ -3,15 +3,13 @@ import io from 'socket.io-client'
 import { useDispatch } from 'react-redux'
 import { UserAction } from '../store/user'
 import { MessageAction } from '../store/message'
-import { useSelector } from 'react-redux'
 import NofiSound from '../assets/Sound.mp3'
 
 export const Socket = () => {
-    let ShakeMessage = false
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const socket = io("https://chatapp-k0b4.onrender.com/", {
+        const socket = io("http://localhost:9000", {
             query: {
                 userId: JSON.parse(localStorage.getItem('User'))?.user._id
             }
@@ -29,7 +27,6 @@ export const Socket = () => {
         })
 
         socket.on("emoji", (MsgWithEmoji) => {
-            // console.log(MsgWithEmoji, "haa bhai mai live data")
             dispatch(MessageAction.SetEmojiOnMessageLive(MsgWithEmoji))
         })
     }, [])

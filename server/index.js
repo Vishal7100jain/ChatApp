@@ -10,6 +10,7 @@ import FriendRoute from './routes/friend.js'
 import { app, server } from './socket/socket.js'
 import path from 'path'
 import { ConnectionToDb } from '../Mongodb.js'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -17,6 +18,13 @@ const PORT = process.env.PORT || 9000
 ConnectionToDb()
 
 const __dirname = path.resolve()
+
+// Allow requests from your frontend origin
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend's origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add methods as needed// If you're using cookies or session-based authentication
+}));
+
 
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
