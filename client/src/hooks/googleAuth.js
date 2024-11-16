@@ -1,6 +1,6 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function useGoogleAuth() {
     const [userData, setUserData] = useState(null)
@@ -23,10 +23,5 @@ export default function useGoogleAuth() {
         }
     }
 
-    useEffect(() => {
-        handleGoogleLogin()
-    }, [handleGoogleLogin])
-
     return { handleGoogleLogin, userData }
-
 }
