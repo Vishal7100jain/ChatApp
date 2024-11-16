@@ -1,5 +1,4 @@
 import User from "../models/user.js"
-import bcrypt from "bcrypt"
 import generateJWT from "../utilities/generateJWT.js"
 
 export const SignUp = async (req, res) => {

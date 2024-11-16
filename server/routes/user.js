@@ -6,7 +6,7 @@ import { GetMyData, SearchUserToFriendReq } from '../controller/user.js'
 
 const router = express.Router()
 
-router.get('/UserSearch/:id', auth, WrapAsync(SearchUserToFriendReq))
+router.get('/UserSearch/:email', auth, WrapAsync(SearchUserToFriendReq))
 router.get("/MyData/:id", auth, WrapAsync(GetMyData))
 
 export default router

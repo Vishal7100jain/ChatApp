@@ -50,7 +50,7 @@ const Conversation = ({ UserToSendFriendReq, conversationData }) => {
                         </button>
                     </>
                         : <>
-                            <p className='font-blod text-2xl'>{conversationData.username}</p>
+                            <p className='text-2xl pb-3 font-bold'>{conversationData.username}</p>
                         </>}
                 </div>
             </div>

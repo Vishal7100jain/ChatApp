@@ -1,12 +1,10 @@
-import React from 'react'
-import { FaUserCircle } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux';
 import { ImCross } from "react-icons/im";
 import { AcceptFriendReqActionFun, RejectFriendReqActionFun } from '../../action/user';
 import { MdPendingActions } from "react-icons/md";
 
-const siderProfile = () => {
+const SiderProfile = () => {
     const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))?.user
     const dispatch = useDispatch()
 
@@ -19,6 +17,7 @@ const siderProfile = () => {
         e.preventDefault()
         dispatch(AcceptFriendReqActionFun(id))
     }
+
     return (
         <div className="drawer z-[99] bg-zinc-700 ">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -26,7 +25,7 @@ const siderProfile = () => {
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu overflow-x-scroll  overflow-y-hidden p-4 xs:w-full md:w-1/3 bg-base-200 text-base-content " style={{ height: "90%" }}>
                     <div className=' font-sans font-bold underline flex items-center text-xl  justify-center'>
-                      <div className='avatar'>
+                        <div className='avatar'>
                             <span className=' w-12 rounded-full'>
                                 <img src={user.ProfilePic} alt="user avatar" />
                             </span>
@@ -40,7 +39,7 @@ const siderProfile = () => {
                             </div>
                             <div className="divider"></div>
                             <ul tabIndex={0} className="dropdown-content  z-[1] m-0 menu p-2 shadow bg-base-100 rounded-box w-full">
-                                {user.PendingReq.length === 0 ? <li className='p-2'>No Pending Requests</li> :
+                                {user?.PendingReq?.length === 0 ? <li className='p-2'>No Pending Requests</li> :
                                     user.PendingReq.map((FriendReqUser) => {
                                         return <div key={FriendReqUser._id} className='flex justify-around align-middle '>
                                             <li className='p-2 text-lg font-bold'>{FriendReqUser.username}</li>
@@ -59,4 +58,4 @@ const siderProfile = () => {
     )
 }
 
-export default siderProfile
+export default SiderProfile

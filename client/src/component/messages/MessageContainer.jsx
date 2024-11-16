@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, } from 'react'
 import Messages from './messages.jsx'
 import MessageInput from './MessageInput.jsx'
 import { TiMessage } from "react-icons/ti";
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { GetMessages } from '../../action/user.js';
-import { UserAction } from '../../store/user.js';
 
 const MessageContainer = ({ IamPhoneView }) => {
     let noChatSelected = true
@@ -24,24 +23,18 @@ const MessageContainer = ({ IamPhoneView }) => {
         noChatSelected = false
     }
 
-    // if (IamPhoneView) noChatSelected = false
-
     return <>
         <div className={`md:flex ${IamPhoneView ? "" : 'hidden border-l border-slate-500'} overflow-auto h-full w-full flex-col`}>
             {noChatSelected ? <NoChatSelected /> : <>
-                <div className="navbar bg-base-100 xs:fixed xs:top-0 md:relative xs:z-[99]">
-                    <div>
-                        <div className='avatar'>
-                            <span className=' w-12 rounded-full'>
-                                <img src={SelectedUserToChat.ProfilePic} alt="user avatar" />
-                            </span>
-                        </div>
+                <div className="navbar bg-base-100 xs:fixed xs:top-0 md:relative xs:z-[99] gap-3">
+                    <div className='avatar'>
+                        <span className='w-12 rounded-full'>
+                            <img src={SelectedUserToChat.ProfilePic} alt="user avatar" />
+                        </span>
                     </div>
-                    <div className='px-16'>
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                            <div className="indicator">
-                                <span className='text-gray-100 font-bold text-3xl align-center'>{SelectedUserToChat.username} </span>
-                            </div>
+                    <div>
+                        <div className="indicator">
+                            <span className='text-gray-100 font-bold text-3xl align-center'>{SelectedUserToChat.username}</span>
                         </div>
                     </div>
                 </div>
@@ -49,7 +42,7 @@ const MessageContainer = ({ IamPhoneView }) => {
                 <MessageInput className="overflow-hidden" />
             </>
             }
-        </div>
+        </div >
     </>
 
 }
