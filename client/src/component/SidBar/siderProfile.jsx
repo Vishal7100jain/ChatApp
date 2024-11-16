@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ImCross } from "react-icons/im";
 import { AcceptFriendReqActionFun, RejectFriendReqActionFun } from '../../action/user';
 import { MdPendingActions } from "react-icons/md";
+import { UserAction } from "../../store/user";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const SiderProfile = () => {
     const user = useSelector(state => state.user.user) || JSON.parse(localStorage.getItem('User'))?.user
     const dispatch = useDispatch()
+    const [isloading, setIsloading] = useState(false)
 
     const handleRemoveReq = (e, id) => {
         e.preventDefault()
@@ -18,19 +22,36 @@ const SiderProfile = () => {
         dispatch(AcceptFriendReqActionFun(id))
     }
 
+    const hanldeLogout = () => {
+        try {
+            setIsloading(true)
+            dispatch(UserAction.setUser({ user: null }))
+            localStorage.removeItem('User')
+        } catch (error) {
+            toast.error(error.message)
+        }
+        finally {
+            toast.success('Logout SuccessFully')
+            setIsloading(false)
+        }
+    }
+
     return (
         <div className="drawer z-[99] bg-zinc-700 ">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-side ">
+            <div className="drawer-side">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu overflow-x-scroll  overflow-y-hidden p-4 xs:w-full md:w-1/3 bg-base-200 text-base-content " style={{ height: "90%" }}>
-                    <div className=' font-sans font-bold underline flex items-center text-xl  justify-center'>
-                        <div className='avatar'>
-                            <span className=' w-12 rounded-full'>
-                                <img src={user.ProfilePic} alt="user avatar" />
-                            </span>
+                <ul className="menu overflow-x-scroll overflow-y-hidden p-4 xs:w-full md:w-1/3 bg-base-200 text-base-content " style={{ height: "90%" }}>
+                    <div className=' font-sans font-bold flex text-xl items-center'>
+                        <div className="flex-row flex items-center w-4/5 gap-2">
+                            <div className='avatar'>
+                                <span className='w-12 rounded-full'>
+                                    <img src={user.ProfilePic} alt="user avatar" />
+                                </span>
+                            </div>
+                            <h1 style={{ display: 'inline-flex' }} className="text-2xl">{user.username}</h1>
                         </div>
-                        <h1 className='px-2'>{user.username}</h1>
+                        <button disabled={isloading} className="btn btn-outline btn-primary border btn-sm" onClick={() => hanldeLogout()}>Logout</button>
                     </div>
                     <li>
                         <div className="dropdown dropdown-bottom  hover:bg-white">
@@ -53,7 +74,7 @@ const SiderProfile = () => {
                         </div>
                     </li>
                 </ul>
-            </div >
+            </div>
         </div >
     )
 }

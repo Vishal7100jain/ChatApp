@@ -54,18 +54,19 @@ const SignUp = () => {
                                 </datalist>
                             }
                         </label>
-
+                        <label className="input input-bordered flex items-center gap-2 m-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 opacity-70">
+                                <path d="M12 13.3L2 6V5c0-.6.4-1 1-1h18c.6 0 1 .4 1 1v1l-10 7.3z" />
+                                <path d="M12 15.6L2 8v10c0 .6.4 1 1 1h18c.6 0 1-.4 1-1V8l-10 7.6z" />
+                            </svg>
+                            <input type={'email'} className="grow" placeholder='Email' value={Data.email} onChange={(e) => SetData({ ...Data, email: e.target.value })} />
+                        </label>
                         <label className="input input-bordered flex items-center gap-2 p-0 m-3">
                             <select className="select select-bordered w-full" onChange={(e) => SetData({ ...Data, gender: e.target.value })}>
                                 <option disabled selected>Gender</option>
                                 <option>Male</option>
                                 <option>Female</option>
                             </select>
-                        </label>
-
-                        <label className="input input-bordered flex items-center gap-2 m-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clipRule="evenodd" /></svg>
-                            <input type={'email'} className="grow" placeholder='Email' value={Data.email} onChange={(e) => SetData({ ...Data, email: e.target.value })} />
                         </label>
                     </div>
                     {loadingbtn ? (

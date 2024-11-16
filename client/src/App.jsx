@@ -29,7 +29,7 @@ function App() {
           <Route path='/signup' element={!user ? <SignUp /> : <Navigate to={'/'} />} />
           <Route path='/Conversation' element={<MessageContainer IamPhoneView={true} />} />
         </Routes>
-      </GoogleOAuthProvider>;
+      </GoogleOAuthProvider>
       <Toaster></Toaster>
     </div>
   )
