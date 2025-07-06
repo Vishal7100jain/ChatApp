@@ -28,6 +28,7 @@ app.use(
       "https://chatbuuddy.netlify.app.com/",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
